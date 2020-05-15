@@ -23,7 +23,7 @@ macro_rules! log {
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Cell {
     Dead = 0,
-    Alive = 1
+    Alive = 1,
 }
 
 #[wasm_bindgen]
@@ -31,7 +31,7 @@ impl Cell {
     fn toggle(&mut self) {
         *self = match *self {
             Cell::Dead => Cell::Alive,
-            Cell::Alive => Cell::Dead
+            Cell::Alive => Cell::Dead,
         }
     }
 }
@@ -96,19 +96,19 @@ impl Universe {
         let height = 64;
 
         let cells = (0..width * height)
-        .map(|i| {
-            if i % 2 == 0 || i % 7 == 0 {
-                Cell::Alive
-            } else {
-                Cell::Dead
-            }
-        })
-        .collect();
+            .map(|i| {
+                if i % 2 == 0 || i % 7 == 0 {
+                    Cell::Alive
+                } else {
+                    Cell::Dead
+                }
+            })
+            .collect();
 
         Universe {
             width,
             height,
-            cells
+            cells,
         }
     }
 
