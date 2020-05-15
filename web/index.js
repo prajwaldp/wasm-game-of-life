@@ -14,10 +14,14 @@ const width = universe.width()
 
 
 const canvas = document.getElementById("game-of-life-canvas")
+const playPauseButton = document.getElementById('play-pause-button')
+
 canvas.height = (CELL_SIZE + 1) * height + 1;
 canvas.width = (CELL_SIZE + 1) * width + 1;
 
 const ctx = canvas.getContext('2d')
+
+let animationId = null
 
 const getIndex = (row, col) => row * width + col
 
@@ -66,13 +70,27 @@ const drawCells = () => {
 
 
 const renderLoop = () => {
-  universe.tick()
-
   drawGrid()
   drawCells()
-  requestAnimationFrame(renderLoop)
+  universe.tick()
+  animationId = requestAnimationFrame(renderLoop)
 }
 
-drawGrid()
-drawCells()
-requestAnimationFrame(renderLoop)
+const isPaused = () => animationId == null
+
+const play = () => {
+  playPauseButton.innerHTML = "&#9616;&nbsp;&#9612;"
+  renderLoop()
+}
+
+const pause = () => {
+  playPauseButton.textContent = "▶"
+  cancelAnimationFrame(animationId)
+  animationId = null
+}
+
+playPauseButton.addEventListener('click', e => {
+  isPaused() ? play() : pause()
+})
+
+play()

@@ -15,12 +15,25 @@
         align-items: center;
         justify-content: center;
       }
+
+      button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 10px;
+      }
     </style>
   </head>
   <body>
     <noscript>This page contains webassembly and javascript content, please
     enable javascript in your browser.</noscript>
     <canvas id="game-of-life-canvas"></canvas>
+    <button id="play-pause-button"></button>
     <script src="./bundle.js"></script>
   </body>
 </html>
